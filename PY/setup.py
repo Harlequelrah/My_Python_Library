@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="harlequelrah_py",
-    version="0.1",
+    version="0.1.1",
     packages=find_packages(),
     description="Package personnalisé pour faciliter la programmation et le développement avec python",
     long_description=open("README.md").read(),
