@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="harlequelrah_django",
-    version="0.1",
+    version="0.1.1",
     packages=find_packages(),
     description="Package personnalisé pour faciliter  le développement avec python avec django",
     long_description=open("README.md").read(),
