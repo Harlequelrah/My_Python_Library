@@ -16,7 +16,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.10",
-    install_requires=[
-        "fastapi[standard]>=0.112.0",
-    ],
+    install_requires=["fastapi[standard]>=0.112.0", "alembic>=1.13"],
+    entry_points={"console_scripts": ["harlequelrah_fastapi=harlequelrah_fastapi.__main__:main"]},
 )
