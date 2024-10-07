@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="harlequelrah_fastapi",
-    version="0.1",
+    version="0.4",
     packages=find_packages(),
     description="Package personnalisé pour faciliter  le développement avec python avec fastapi",
     long_description=open("README.md").read(),
@@ -16,6 +16,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.10",
-    install_requires=["fastapi[standard]>=0.112.0", "alembic>=1.13"],
+    install_requires=["fastapi[standard]>=0.112.0", "alembic>=1.13.3","virtualenv>=20.26.6","mysql-connector-python>=9.0.0"],
     entry_points={"console_scripts": ["harlequelrah_fastapi=harlequelrah_fastapi.__main__:main"]},
 )

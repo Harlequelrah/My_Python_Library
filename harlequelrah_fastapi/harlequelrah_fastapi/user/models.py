@@ -13,7 +13,7 @@ from datetime import datetime
 
 
 Ph=PasswordHasher()
-class UserModel():
+class User():
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String(256), unique=True, index=True)
     username = Column(String(256), unique=True, index=True)
@@ -38,14 +38,14 @@ class UserModel():
             return self.check_password(password)
 
 
-class UserPydanticBaseModel(BaseModel):
+class UserBaseModel(BaseModel):
     email: str = Field(example="user@example.com")
     username: str = Field(example="Harlequelrah")
     lastname: str = Field(example="SMITH")
     firstname: str = Field(example="jean-francois")
 
 
-class UserPydanticCreateModel(UserPydanticBaseModel):
+class UserCreateModel(UserBaseModel):
     password: str = Field(example="m*td*pa**e")
 
 
@@ -58,11 +58,13 @@ class UserUpdateModel(BaseModel):
     password: Optional[str] = None
 
 
-class UserPydanticModel(UserPydanticBaseModel):
+class UserModel(UserBaseModel):
     id: int
     is_active: bool
     date_created: datetime
 
-class UserLogin(BaseModel):
-    username: str
+
+class UserLoginModel(BaseModel):
+    username: Optional[str] = None
     password: str
+    email: Optional[str] = None
