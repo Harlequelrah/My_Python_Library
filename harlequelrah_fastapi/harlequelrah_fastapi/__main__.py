@@ -30,6 +30,18 @@ def startproject(project_name):
     else:
         print("Le dossier source 'settings' est introuvable.")
 
+    # Création de l'environnement virtuel dans le dossier settings
+    env_path = os.path.join(settings_path, "env")
+    subprocess.run(["virtualenv", env_path])
+    print(f"Environnement virtuel créé dans {env_path}")
+
+    # Installation des dépendances avec pip
+    requirements_file = os.path.join(settings_path, "requirements.txt")
+    print(f"Installation des dépendances à partir de {requirements_file}...")
+    subprocess.run(
+        [os.path.join(env_path, "Scripts", "pip"), "install", "-r", requirements_file]
+    )
+
     print(f"Le projet {project_name} a été créé avec succès.")
 
 
@@ -85,40 +97,6 @@ def generate_appuser():
         print("Le dossier source 'appuser' est introuvable.")
 
 
-def runserver():
-    parent_dir = os.getcwd()
-    project_folders = [
-        f
-        for f in os.listdir(parent_dir)
-        if os.path.isdir(os.path.join(parent_dir, f)) and not f.startswith(".")
-    ]
-
-    if not project_folders:
-        print("Aucun projet trouvé. Veuillez d'abord créer un projet.")
-        return
-
-    project_folder = os.path.join(parent_dir, project_folders[0])
-    sub_project_folder = os.path.join(project_folder, project_folders[0])
-    settings_folder = os.path.join(sub_project_folder, "settings")
-    main_file_path = os.path.join(settings_folder, "__main__.py")
-    if os.path.exists(settings_folder):
-        print(main_file_path)
-        module_path = f"{project_folders[0]}.{project_folders[0]}.settings.__main__"
-        subprocess.run(
-            [
-                "uvicorn",
-                f"{module_path}:app",
-                "--reload",
-                "--host",
-                "127.0.0.1",
-                "--port",
-                "8000",
-            ]
-        )
-    else:
-        print("Le fichier main.py est introuvable dans le projet.")
-
-
 def main():
     if len(sys.argv) < 2:
         print("Usage: harlequelrah_fastapi <commande> <nom>")
@@ -133,8 +111,6 @@ def main():
         startapp(name)
     elif command == "generate" and name == "appuser":
         generate_appuser()
-    elif command == "runserver":
-        runserver()
     else:
         print(f"Commande inconnue: {command}")
 
