@@ -23,12 +23,19 @@ def startproject(project_name):
 
     script_dir = os.path.dirname(os.path.realpath(__file__))
     source_settings_path = os.path.join(script_dir, "settings")
+    main_path_dir = os.path.join(script_dir, "main")
 
     if os.path.exists(source_settings_path):
         shutil.copytree(source_settings_path, settings_path, dirs_exist_ok=True)
         print("Le dossier settings a été copié avec succès.")
     else:
         print("Le dossier source 'settings' est introuvable.")
+
+    if os.path.exists(main_path_dir):
+        shutil.copytree(main_path_dir, sub_project_path, dirs_exist_ok=True)
+        print("Le ficher main  a été copié avec succès.")
+    else:
+        print("Le dossier source 'main' est introuvable.")
 
     # Création de l'environnement virtuel dans le dossier settings
     env_path = os.path.join(settings_path, "env")

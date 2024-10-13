@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from secret import authentication
+from .secret import authentication
 connector = "mysql+mysqlconnector"
 database_name = "mydatabase"
 server = "localhost:3306"
